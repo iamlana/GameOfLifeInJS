@@ -14,6 +14,7 @@ let nextTime = Date.now()
 const speedButtonTwo = document.getElementById("speed-two")
 const speedButtonFour = document.getElementById("speed-four")
 const clearButton = document.getElementById("clear")
+const randomizeButton = document.getElementById("random")
 
 function buildGrid() {
     return new Array(columns).fill(null)
@@ -27,13 +28,14 @@ function render(grid) {
             const cell = grid[col][row];
             ctx.beginPath();
             ctx.rect(col * resolution, row * resolution, resolution, resolution);
-            ctx.fillStyle = cell ? 'grey' : 'darkgrey';
+            ctx.fillStyle = cell ? 'black' : 'white';
             ctx.fill();
+            ctx.stroke();
         }
     }
 }
-requestAnimationFrame(update)
 
+requestAnimationFrame(update)
 function update() {
     const now = Date.now()
     if (now >= nextTime) {
@@ -44,7 +46,7 @@ function update() {
         }
         nextTime += 1000
     }
- requestAnimationFrame(update)
+    requestAnimationFrame(update)
 }
 
 button()
@@ -52,23 +54,35 @@ function button() {
     speedButtonTwo.addEventListener('click', speedTwo)
     speedButtonFour.addEventListener('click', speedFour)
     clearButton.addEventListener('click', clear)
+    randomizeButton.addEventListener('click', randomize)
 }
 
 function speedTwo() {
-nextTime-=250
-requestAnimationFrame(speedTwo)
+    nextTime -= 250
+    requestAnimationFrame(speedTwo)
 }
 
 
 function speedFour() {
-    nextTime-=500
+    nextTime -= 500
     requestAnimationFrame(speedFour)
 }
 
 
 function clear() {
-   console.log(nextGeneration)
- 
+    grid = new Array(columns).fill(null)
+        .map(() => new Array(rows).fill(null))
+    nextGeneration(grid);
+    render(grid);
+}
+
+function randomize() {
+    grid = buildGrid();
+    TODO: "solve problem with speed, which is fast after clean"
+}
+
+function paint(){
+  
 }
 
 function nextGeneration() {
