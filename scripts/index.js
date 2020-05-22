@@ -15,13 +15,13 @@ requestAnimationFrame(onAnimationFrame)
 function onAnimationFrame() {
   const now = Date.now();
   if (running && now >= nextTime) {
+    render(ctx, grid);
     update(grid);
     if (now > nextTime + updateInterval) {
       nextTime = now
     }
     nextTime += updateInterval;
   }
-  render(ctx, grid);
   requestAnimationFrame(onAnimationFrame)
 }
 
@@ -58,4 +58,5 @@ function clear() {
 
 function randomize() {
   grid.randomize();
+  render(ctx, grid);
 }
