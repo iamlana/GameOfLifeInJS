@@ -11,7 +11,7 @@ requestAnimationFrame(onAnimationFrame)
 function onAnimationFrame() {
   const now = Date.now()
   if (now >= nextTime) {
-    grid = update(grid)
+    update(grid);
     render(ctx, grid);
     if (now > nextTime + 1000) {
       nextTime = now
