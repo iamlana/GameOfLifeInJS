@@ -25,13 +25,10 @@ export function update(grid) {
       }
     }
 
-    //rules
-    if (cell === 1 && numNeighbors < 2) {
-      grid.set(col, row, 0);
-    } else if (cell === 1 && numNeighbors > 3) {
-      grid.set(col, row, 0);
-    } else if (cell === 0 && numNeighbors === 3) {
+    if (numNeighbors === 3 || (cell === 1 && numNeighbors === 2)) {
       grid.set(col, row, 1);
+    } else {
+      grid.set(col, row, 0);
     }
   })
 }
