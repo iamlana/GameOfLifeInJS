@@ -1,23 +1,30 @@
-import { COLUMNS, ROWS } from './constants.js';
+export class Grid {
+  constructor (columns, rows) {
+    this.items = new Array(columns).fill(null)
+      .map(() => new Array(rows).fill(0));
+  }
 
-export function buildGrid() {
-  return new Array(COLUMNS).fill(null)
-    .map(() => new Array(ROWS).fill(null)
-      .map(() => Math.floor(Math.random() * 2)));
-}
-
-export function clearGrid(grid) {
-  for (let col = 0; col < grid.length; col++) {
-    for (let row = 0; row < grid[col].length; row++) {
-      grid[col][row] = 0;
+  forEach (fn) {
+    for (let col = 0; col < this.items.length; col++) {
+      for (let row = 0; row < this.items[col].length; row++) {
+        fn(col, row);
+      }
     }
   }
-}
 
-export function randomizeGrid(grid) {
-  for (let col = 0; col < grid.length; col++) {
-    for (let row = 0; row < grid[col].length; row++) {
-      grid[col][row] = Math.floor(Math.random() * 2);
-    }
+  get (col, row) {
+    return this.items[col][row]
+  }
+
+  set (col, row, value) {
+    this.items[col][row] = value
+  }
+
+  clear () {
+    this.forEach((col, row) => this.set(col, row, 0));
+  }
+
+  randomize () {
+    this.forEach((col, row) => this.set(col, row, Math.floor(Math.random() * 2)));
   }
 }

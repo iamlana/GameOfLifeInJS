@@ -1,13 +1,15 @@
 import { update } from './update.js'
 import { render, setupCanvas } from './render.js'
-import { buildGrid, clearGrid, randomizeGrid } from './grid.js'
+import { Grid } from './grid.js'
+import { COLUMNS, ROWS } from './constants.js'
 
 const ctx = setupCanvas();
 
-let grid = buildGrid();
+const grid = new Grid(COLUMNS, ROWS);
+grid.randomize();
 let nextTime = Date.now();
 let updateInterval = 500;
-let running = false;
+let running = true;
 
 requestAnimationFrame(onAnimationFrame)
 function onAnimationFrame() {
@@ -50,10 +52,10 @@ function speedFour() {
 }
 
 function clear() {
-  clearGrid(grid);
+  grid.clear();
   render(ctx, grid);
 }
 
 function randomize() {
-  randomizeGrid(grid);
+  grid.randomize();
 }

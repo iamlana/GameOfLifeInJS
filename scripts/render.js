@@ -8,14 +8,12 @@ export function setupCanvas () {
 }
 
 export function render(ctx, grid) {
-  for (let col = 0; col < grid.length; col++) {
-    for (let row = 0; row < grid[col].length; row++) {
-      const cell = grid[col][row];
-      ctx.beginPath();
-      ctx.rect(col * PIXELS_PER_CELL, row * PIXELS_PER_CELL, PIXELS_PER_CELL, PIXELS_PER_CELL);
-      ctx.fillStyle = cell ? 'black' : 'white';
-      ctx.fill();
-      ctx.stroke();
-    }
-  }
+  grid.forEach((col, row) => {
+    const cell = grid.get(col, row);
+    ctx.beginPath();
+    ctx.rect(col * PIXELS_PER_CELL, row * PIXELS_PER_CELL, PIXELS_PER_CELL, PIXELS_PER_CELL);
+    ctx.fillStyle = cell ? 'black' : 'white';
+    ctx.fill();
+    ctx.stroke();
+  });
 }
