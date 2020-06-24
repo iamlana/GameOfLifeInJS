@@ -1,6 +1,6 @@
 import { COLUMNS, ROWS, PIXELS_PER_CELL } from './constants.js';
 
-export function setupCanvas () {
+export function setupCanvas() {
   const canvas = document.querySelector('canvas');
   canvas.height = COLUMNS * PIXELS_PER_CELL;
   canvas.width = ROWS * PIXELS_PER_CELL;
