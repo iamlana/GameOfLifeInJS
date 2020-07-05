@@ -1,10 +1,10 @@
 import { update } from './update.js'
 import { render, setupCanvas } from './render.js'
 import { Grid } from './grid.js'
-import { COLUMNS, ROWS, canvas } from './constants.js'
+import { COLUMNS, ROWS } from './constants.js'
+import { setupMouseListeners } from './setupMouseListeners.js';
 
-
-const ctx = setupCanvas();
+export const ctx = setupCanvas();
 
 const grid = new Grid(COLUMNS, ROWS);
 grid.randomize();
@@ -62,27 +62,4 @@ function randomize() {
   render(ctx, grid);
 }
 
-
-function paint() {
-  canvas.onmousedown = function (event) {
-      // const cell = render(ctx, grid)
-    canvas.onmousemove = function (event) {
-      var x = event.offsetX;
-      var y = event.offsetY;
-      ctx.fillRect(x, y, 10, 10);
-      ctx.fillStyle ='black' ;
-      ctx.fill();
-      ctx.stroke();
-    }
-
-    canvas.onmouseup = function () {
-      canvas.onmousemove = null;
-    }
-  }
-}
-
-
-
-
-paint()
-// document.querySelector('canvas').addEventListener('click', paint)
+setupMouseListeners(ctx.canvas, ctx);
