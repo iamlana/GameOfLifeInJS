@@ -8,21 +8,28 @@ export const ctx = setupCanvas();
 
 const grid = new Grid(COLUMNS, ROWS);
 grid.randomize();
-let nextTime = Date.now();
-let updateInterval = 500;
+let updateInterval = 100;
+let nextTime = Date.now() + updateInterval;
 let running = true;
 
 requestAnimationFrame(onAnimationFrame)
 function onAnimationFrame() {
-  const now = Date.now();
-  if (running && now >= nextTime) {
+  if (grid.hasChanged) {
     render(ctx, grid);
+    grid.hasChanged = false;
+  }
+
+  const now = Date.now();
+
+  if (now - nextTime > 5000) {
+    nextTime = now
+  }
+
+  if (running && now >= nextTime) {
     update(grid);
-    if (now > nextTime + updateInterval) {
-      nextTime = now
-    }
     nextTime += updateInterval;
   }
+
   requestAnimationFrame(onAnimationFrame)
 }
 
@@ -30,8 +37,8 @@ document.getElementById('play').addEventListener('click', play)
 document.getElementById('pause').addEventListener('click', pause)
 document.getElementById('speed-two').addEventListener('click', speedTwo)
 document.getElementById('speed-four').addEventListener('click', speedFour)
-document.getElementById('clear').addEventListener('click', clear)
-document.getElementById('random').addEventListener('click', randomize)
+document.getElementById('clear').addEventListener('click', () => grid.clear())
+document.getElementById('random').addEventListener('click', () => grid.randomize())
 
 function play() {
   updateInterval = 500;
@@ -52,14 +59,4 @@ function speedFour() {
   running = true;
 }
 
-function clear() {
-  grid.clear();
-  render(ctx, grid);
-}
-
-function randomize() {
-  grid.randomize();
-  render(ctx, grid);
-}
-
-setupMouseListeners(ctx.canvas, ctx);
+setupMouseListeners(ctx.canvas, grid);
