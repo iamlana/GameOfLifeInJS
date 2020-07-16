@@ -1,4 +1,12 @@
 body{
-    background-color: #e3e4c9;
-    color: rgb(43, 37, 37);
+    background-color:rgb(167, 88, 162);
+    color:white; 
+}
+.game_control-button{
+    background-color: transparent;
+    border: solid 1px white;
+    border-radius: 4px;
+    outline: none;
+    color: white;
+    text-transform: uppercase;
 }

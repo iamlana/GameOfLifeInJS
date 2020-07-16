@@ -8,9 +8,9 @@ export function setupCanvas() {
 }
 
 export function render(ctx, grid) {
-  ctx.fillStyle = 'black'
+  ctx.fillStyle = "rgb(193,153,190)"
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-  ctx.fillStyle = 'white'
+  ctx.fillStyle = "rgb(233,210,232)"
   grid.forEach((col, row) => {
     const cell = grid.get(col, row);
     if (cell === 1) {
