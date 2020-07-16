@@ -12,4 +12,3 @@ Simulate the board with rules from https://en.wikipedia.org/wiki/Conway's_Game_o
 Mouse input
 Clicking on a cell changes its state
 Dragging the mouse paints on the board
-A set of unit tests for the transition function
