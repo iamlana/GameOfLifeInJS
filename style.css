@@ -1,12 +1,45 @@
-body{
-    background-color:rgb(167, 88, 162);
-    color:white; 
+body {
+    background-color: #FEFFFF;
+    color: #17252A;
+    font-family: Montserrat, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
-.game_control-button{
-    background-color: transparent;
-    border: solid 1px white;
+
+#myCanvas {
+    margin: 10px auto;
+}
+
+.game_rules {
+    margin: 10px auto;
+    grid-column: 2;
+    padding: 10px;
+}
+
+.game_rules ul {
+    font-weight: 400;
+    list-style: none;
+    padding: 0;
+    justify-self: center;
+}
+
+.game_control-button {
+    background-color: #DEF2F1;
+    border: none;
+    font-size: 20px;
+    font-weight: 800;
+    padding: 5px;
     border-radius: 4px;
     outline: none;
-    color: white;
+    color: #17252A;
     text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1000px) {
+
+    #myCanvas, .game_rules {
+        text-align: center;
+        grid-column: span 2;
+    }
+
 }

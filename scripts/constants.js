@@ -1,3 +1,3 @@
-export const PIXELS_PER_CELL = 6;
-export const COLUMNS = 100;
-export const ROWS = 100;
+export const PIXELS_PER_CELL = 10;
+export const COLUMNS = 50;
+export const ROWS = 50;
