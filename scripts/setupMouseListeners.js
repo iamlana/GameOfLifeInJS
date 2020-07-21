@@ -7,8 +7,17 @@ export function setupMouseListeners(canvas, grid) {
     drawing = true
     draw(event)
   })
+  canvas.addEventListener('touchstart', function (event) {
+    drawing = true
+    draw(event)
+  })
 
   canvas.addEventListener('mousemove', function (event) {
+    if (drawing) {
+      draw(event)
+    }
+  })
+  canvas.addEventListener('touchmove', function (event) {
     if (drawing) {
       draw(event)
     }
@@ -17,8 +26,11 @@ export function setupMouseListeners(canvas, grid) {
   canvas.addEventListener('mouseup', function () {
     drawing = false
   })
+  canvas.addEventListener('touchend', function () {
+    drawing = false
+  })
 
-  function draw (event) {
+  function draw(event) {
     var x = Math.floor(event.offsetX / PIXELS_PER_CELL);
     var y = Math.floor(event.offsetY / PIXELS_PER_CELL);
     grid.set(x, y, 1);
